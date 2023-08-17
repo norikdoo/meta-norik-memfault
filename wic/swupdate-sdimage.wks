@@ -1,0 +1,10 @@
+part u-boot --source rawcopy --sourceparams="file=imx-boot" --ondisk mmc --no-table --align ${BOOTLOADER_SEEK}
+# Copy the u-boot environment to the predefined offset 0x3e0000
+part u-boot-env --source rawcopy --sourceparams="file=u-boot-env.bin" --ondisk mmc --no-table --offset 7936s --fixed-size 64k
+
+part --source bootimg-partition --fstype=vfat --label boot --ondisk mmc --active --align 4096 --size ${WKS_BOOTIMAGESIZE}
+part / --source rootfs --fstype=ext4 --label root_a --ondisk mmc --use-uuid
+part / --source rootfs --fstype=ext4 --label root_b --ondisk mmc --use-uuid
+part /data --fstype=ext4 --label data --ondisk mmc --fixed-size 64
+
+bootloader --timeout=0

@@ -1,0 +1,46 @@
+software = {
+    version = "__MEMFAULT_SOFTWARE_VERSION";
+
+    __MEMFAULT_HARDWARE_VERSION = {
+        hardware-compatibility: [ "1.0" ];
+        stable: {
+            copy1: {
+                images: (
+                    {
+                        filename = "base-image-__MACHINE.tar.gz";
+                        type = "archive";
+                        compressed = "zlib";
+                        device = "/dev/__OTA_PARTITION_A";
+                        filesystem = "ext4";
+                        path = "/";
+                    }
+                );
+                uboot: (
+                    {
+                        name = "mmcroot";
+                        value = "2";
+                    }
+                );
+            }
+
+            copy2: {
+                images: (
+                    {
+                        filename = "base-image-__MACHINE.tar.gz";
+                        type = "archive";
+                        compressed = "zlib";
+                        device = "/dev/__OTA_PARTITION_B";
+                        filesystem = "ext4";
+                        path = "/";
+                    }
+                );
+                uboot: (
+                    {
+                        name = "mmcroot";
+                        value = "3";
+                    }
+                );
+            }
+        }
+    }
+}
