@@ -32,6 +32,10 @@ IMAGE_INSTALL:append:mx8m-generic-bsp = " firmwared"
 
 PACKAGECONFIG:pn_memfaultd := "swupdate collectd coredump logging"
 
+DEPENDS:append = " elfutils-native"
+IMAGE_GEN_DEBUGFS = "1"
+IMAGE_FSTYPES_DEBUGFS = "tar.gz"
+
 # You must set the following variables in your local.conf:
 # MEMFAULT_DEVICE_ID - unique device ID (ex. MAC address, serial number, etc.)
 # MEMFAULT_HARDWARE_VERSION - board revision
